@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+burger-builder/src/hoc/Aux.js
 
 # testing
 /coverage
