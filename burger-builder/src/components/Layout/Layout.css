@@ -1,3 +1,12 @@
 .bodyContent{
     margin-top: 18px;
 }
+
+.Toolbar{
+    text-align: right;
+}
+
+.HeaderWraper{
+    display: flex;
+    justify-content: space-between;
+}
