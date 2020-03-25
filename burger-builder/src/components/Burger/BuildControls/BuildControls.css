@@ -1,0 +1,9 @@
+.BuildControls{
+    width: 20%;
+    background-color: rgb(228, 121, 135);
+    flex-flow: column;
+    align-items: center;
+    margin: auto;
+    padding: 10px 0px;
+    border-radius: 10% 10% 10% 10%;
+}
