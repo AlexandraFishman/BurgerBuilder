@@ -30,6 +30,12 @@
 	top:1px;
 }
 
+.BuildControl button:disabled {
+	background:linear-gradient(to bottom, #ce6f64 5%, #5a2f2f 100%);
+	border-radius:650px;
+	border:1px solid #1f1c1b;
+}
+
 .BuildControl .More {
     font: inherit;
 	padding:8px 15px;

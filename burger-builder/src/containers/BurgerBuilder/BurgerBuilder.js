@@ -40,7 +40,9 @@ class BurgerBuilder extends Component {
 
     removeIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
-        if (oldCount > 0) {
+        if (oldCount === 0) {
+            return;
+        }
             const newCount = oldCount - 1;
             const updatedIngredients = {
                 ...this.state.ingredients
@@ -51,19 +53,25 @@ class BurgerBuilder extends Component {
                 ingredients: updatedIngredients,
                 totalPrice: priceAddition
             });
-        } else {
-            alert("Cant remove a non existant "+ type);
-        }
+        
     };
 
 
 
 
     render() {
+        const disableInfo = {
+            ...this.state.ingredients
+        };
+        for(let ing in disableInfo){
+            disableInfo[ing] = disableInfo[ing] <= 0
+        }
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients} />
-                <BuildControls ingresientAdded={this.addIngredientHandler} ingredientRemover={this.removeIngredientHandler} />
+                <BuildControls ingresientAdded={this.addIngredientHandler}
+                    ingredientRemover={this.removeIngredientHandler}
+                    disabled={disableInfo}/>
             </Aux>
         );
     }
