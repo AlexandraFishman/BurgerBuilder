@@ -60,7 +60,7 @@ class BurgerBuilder extends Component {
 
     orderNow = () => {
         // alert(JSON.stringify(this.state.ingredients));
-        const afterPurchase = {
+        // const afterPurchase = {
             // ingredients: {
             //     salad: 0,
             //     bacon: 0,
@@ -68,8 +68,8 @@ class BurgerBuilder extends Component {
             //     meat: 0
             // },
             // totalPrice: 4,
-            orderButtonClicked: true
-        }
+        //     orderButtonClicked: true
+        // }
         this.setState({orderButtonClicked: true});
     }
 
@@ -91,7 +91,7 @@ class BurgerBuilder extends Component {
                     price={this.state.totalPrice}
                     disabled={disableInfo}
                     orderButton={this.orderNow} />
-                {this.state.orderButtonClicked ? <PopUp toggle={this.togglePop} /> : null}
+                {this.state.orderButtonClicked ? <PopUp toggle={this.togglePop} ingredients={this.state.ingredients}/> : null}
             </Aux >
         );
     }

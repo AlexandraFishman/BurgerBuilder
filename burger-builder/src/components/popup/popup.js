@@ -1,23 +1,29 @@
 import React, { Component } from "react";
 import './popup.css';
 
-export default class PopUp extends Component {
-  handleClick = () => {
-   this.props.toggle();
-  };
+const PopUp = (props) => {
 
-render() {
-  return (
-   <div className="modal">
-     <div className="modalContent">
-     <span className="close" onClick={this.handleClick}>&times;</span>
-     <div>I'm A Pop Up!!!</div>
-     <footer>
-         <button>Confirm order</button>
-         <button>Dismiss</button>
-     </footer>
-    </div>
-   </div>
-  );
- }
+    const handleClick = () => {
+        return;
+    };
+
+    const ingredientsList = Object.keys(props.ingredients);
+    const totalOrder = ingredientsList.map(key => (<li key={key}>{key} : {props.ingredients[key]}</li>));
+
+    return (
+        <div className="modal">
+            <div className="modalContent">
+                <span className="close" onClick={() => handleClick()}>&times;</span>
+                Your order consists of:
+                <ul>{totalOrder}</ul>          
+                <footer>
+                    <button>Confirm order</button>
+                    <button>Dismiss</button>
+                </footer>
+            </div>
+        </div>
+    );
+
 }
+
+export default PopUp;
