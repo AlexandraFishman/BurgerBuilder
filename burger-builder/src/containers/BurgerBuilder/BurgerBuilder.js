@@ -73,6 +73,10 @@ class BurgerBuilder extends Component {
         this.setState({orderButtonClicked: true});
     }
 
+    closePopup(){   //later needs to be updated by state manager
+        this.setState({orderButtonClicked: false});
+    }
+
 
 
 
@@ -91,7 +95,7 @@ class BurgerBuilder extends Component {
                     price={this.state.totalPrice}
                     disabled={disableInfo}
                     orderButton={this.orderNow} />
-                {this.state.orderButtonClicked ? <PopUp toggle={this.togglePop} ingredients={this.state.ingredients}/> : null}
+                {this.state.orderButtonClicked ? <PopUp closePopup={() => this.closePopup()} ingredients={this.state.ingredients}/> : null}
             </Aux >
         );
     }
