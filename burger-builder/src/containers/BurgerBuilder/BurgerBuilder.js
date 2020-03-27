@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Aux from '../../hoc/Aux';
 import Burger from "../../components/Burger/Burger";
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
+import PopUp from "../../components/popup/popup"; 
+
 
 const INGREDIENT_PRICE = {
     salad: 0.25,
@@ -20,7 +22,8 @@ class BurgerBuilder extends Component {
                 cheese: 0,
                 meat: 0
             },
-            totalPrice: 4
+            totalPrice: 4,
+            orderButtonClicked: false
         }
     }
 
@@ -42,18 +45,33 @@ class BurgerBuilder extends Component {
         if (oldCount === 0) {
             return;
         }
-            const newCount = oldCount - 1;
-            const updatedIngredients = {
-                ...this.state.ingredients
-            };
-            updatedIngredients[type] = newCount;
-            const priceAddition = this.state.totalPrice - INGREDIENT_PRICE[type];
-            this.setState({
-                ingredients: updatedIngredients,
-                totalPrice: priceAddition
-            });
-        
+        const newCount = oldCount - 1;
+        const updatedIngredients = {
+            ...this.state.ingredients
+        };
+        updatedIngredients[type] = newCount;
+        const priceAddition = this.state.totalPrice - INGREDIENT_PRICE[type];
+        this.setState({
+            ingredients: updatedIngredients,
+            totalPrice: priceAddition
+        });
+
     };
+
+    orderNow = () => {
+        // alert(JSON.stringify(this.state.ingredients));
+        const afterPurchase = {
+            // ingredients: {
+            //     salad: 0,
+            //     bacon: 0,
+            //     cheese: 0,
+            //     meat: 0
+            // },
+            // totalPrice: 4,
+            orderButtonClicked: true
+        }
+        this.setState({orderButtonClicked: true});
+    }
 
 
 
@@ -62,7 +80,7 @@ class BurgerBuilder extends Component {
         const disableInfo = {
             ...this.state.ingredients
         };
-        for(let ing in disableInfo){
+        for (let ing in disableInfo) {
             disableInfo[ing] = disableInfo[ing] <= 0
         }
         return (
@@ -71,8 +89,10 @@ class BurgerBuilder extends Component {
                 <BuildControls ingresientAdded={this.addIngredientHandler}
                     ingredientRemover={this.removeIngredientHandler}
                     price={this.state.totalPrice}
-                    disabled={disableInfo}/>
-            </Aux>
+                    disabled={disableInfo}
+                    orderButton={this.orderNow} />
+                {this.state.orderButtonClicked ? <PopUp toggle={this.togglePop} /> : null}
+            </Aux >
         );
     }
 }
